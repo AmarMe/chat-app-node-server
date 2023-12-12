@@ -4,12 +4,14 @@ var http= require('http');
 const server = http.createServer(app);
 const cors = require('cors');
 const PORT =process.env.PORT || 5000;
-const io = require('socket.io')(server,{
-  cors:
-  {
-    origin:"*"
-  }
-});
+const io = require('socket.io')(server);
+  // {
+//   cors:
+//   {
+//     origin:"*"
+//   }
+// }
+// );
 
 //middlewares
 app.use(express.json());
