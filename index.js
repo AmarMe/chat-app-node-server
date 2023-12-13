@@ -16,7 +16,12 @@ const io = require('socket.io')(server);
 //middlewares
 app.use(express.json());
 app.use(cors());
+
 var clients={};
+
+const routes=require("./routes");
+app.use("/routes",routes);
+
 
 io.on("connection",(socket)=>{
   console.log("connected");
@@ -42,5 +47,5 @@ app.route("/check").get((req,res)=>{
 });
 
 server.listen(PORT,"0.0.0.0",()=>{
-  console.log("server connected to port ");
+  console.log(`server connected to port ${PORT}`);
 })
