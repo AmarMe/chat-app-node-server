@@ -1,26 +1,23 @@
 const express = require('express');
 const app=express();
-var http= require('http');
+var http= require('https');
 const server = http.createServer(app);
 const cors = require('cors');
 const PORT =process.env.PORT || 5000;
 const io = require('socket.io')(server);
-  // {
-//   cors:
-//   {
-//     origin:"*"
-//   }
-// }
-// );
+
+
 
 //middlewares
 app.use(express.json());
 app.use(cors());
+app.use("/uploads",express.static("uploads"));
 
 var clients={};
 
 const routes=require("./routes");
 app.use("/routes",routes);
+app.use("/uploads",express.static("uploads"));
 
 
 io.on("connection",(socket)=>{
